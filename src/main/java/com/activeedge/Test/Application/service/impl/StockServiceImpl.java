@@ -78,7 +78,7 @@ public class StockServiceImpl implements StockService {
   }
 
   @Override
-  public ApiResponse<?> updateStockPrice(Long id, UpdateStockPriceDto updateStockPriceDto) {
+  public ApiResponse<Stocks> updateStockPrice(Long id, UpdateStockPriceDto updateStockPriceDto) {
     try {
       Optional<Stocks> stockOptional = stocksRepo.findById(id);
       if (stockOptional.isPresent()) {
