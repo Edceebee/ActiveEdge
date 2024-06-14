@@ -1,6 +1,6 @@
 package com.activeedge.Test.Application.request;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class CreateStockDto {
   private String name;
   private double currentPrice;
-  private LocalDateTime createDate;
-  private LocalDateTime updateDate;
+  private Timestamp createDate;
+  private Timestamp updateDate;
 
 }

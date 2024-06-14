@@ -7,7 +7,7 @@ import com.activeedge.Test.Application.request.UpdateStockPriceDto;
 import com.activeedge.Test.Application.response.ApiResponse;
 import com.activeedge.Test.Application.response.ApiResponse.Code;
 import com.activeedge.Test.Application.service.StockService;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -68,7 +68,7 @@ public class StockServiceImpl implements StockService {
       if (stock.isPresent()) {
         return new ApiResponse<>(true, Code.SUCCESS, "Stock retrieved successfully", stock.get());
       } else {
-        return new ApiResponse<>(false, Code.NOT_FOUND, "Stock not found", null);
+        return new ApiResponse<>(false, Code.NOT_FOUND, "Stock with id "+id +" not found", null);
       }
     }
     catch (Exception exception) {
@@ -84,11 +84,14 @@ public class StockServiceImpl implements StockService {
       if (stockOptional.isPresent()) {
         Stocks stock = stockOptional.get();
         stock.setCurrentPrice(updateStockPriceDto.getCurrentPrice());
-        stock.setUpdateDate(LocalDateTime.now());
+
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        stock.setUpdateDate(now);
+
         Stocks updatedStock = stocksRepo.save(stock);
         return new ApiResponse<>(true, Code.SUCCESS, "Stock price updated successfully", updatedStock);
       } else {
-        return new ApiResponse<>(false, Code.NOT_FOUND, "Stock not found", null);
+        return new ApiResponse<>(false, Code.NOT_FOUND, "Stock with id "+id +" not found", null);
       }
     }
     catch (Exception exception) {

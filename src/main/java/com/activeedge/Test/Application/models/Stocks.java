@@ -1,10 +1,10 @@
 package com.activeedge.Test.Application.models;
 
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class Stocks {
 
   private String name;
   private double currentPrice;
-  private LocalDateTime createDate;
-  private LocalDateTime updateDate;
+  private Timestamp createDate;
+  private Timestamp updateDate;
 
 }
